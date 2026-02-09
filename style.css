@@ -78,7 +78,46 @@ body {
   width: 100%;
 }
 
-/* ===== HERO СЕКЦИЯ ===== */
+/* Гамбургер меню */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  gap: 6px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #ff1744;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Десктопное меню всегда видно */
+@media (min-width: 769px) {
+  .nav-menu {
+    display: flex !important;
+  }
+}
+
+
 .hero {
   margin-top: 80px;
   height: 100vh;
@@ -642,9 +681,13 @@ body {
     gap: 40px;
   }
 
-  .image-placeholder {
+  .image-placeholder,
+  .story-image {
     width: 300px;
     height: 300px;
+  }
+
+  .image-placeholder {
     font-size: 100px;
   }
 
@@ -671,53 +714,90 @@ body {
   }
 
   .nav-container {
-    padding: 0 20px;
+    padding: 0 15px;
+  }
+
+  .nav-logo {
+    font-size: 1.4em;
+  }
+
+  .hamburger {
+    display: flex;
   }
 
   .nav-menu {
-    gap: 20px;
+    gap: 15px;
     flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    padding: 20px 15px;
+    border-radius: 0 0 10px 10px;
+    display: none;
+    list-style: none;
+  }
+
+  .nav-menu.active {
+    display: flex;
   }
 
   .nav-link {
     font-size: 0.9em;
+    padding: 10px 0;
+    display: block;
   }
 
   .hero {
     margin-top: 70px;
-    height: 70vh;
+    height: 60vh;
+    min-height: 500px;
   }
 
   .hero-title {
-    font-size: 2em;
+    font-size: 2.2em;
+    line-height: 1.2;
   }
 
   .hero-subtitle {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   .hero-hearts {
-    font-size: 2em;
+    font-size: 1.8em;
+    margin-top: 15px;
   }
 
   .story-section {
-    padding: 60px 20px;
+    padding: 50px 15px;
     min-height: auto;
   }
 
   .section-wrapper {
-    gap: 30px;
+    gap: 25px;
+  }
+
+  .section-image {
+    width: 100% !important;
+  }
+
+  .image-placeholder,
+  .story-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    aspect-ratio: 4/3;
+    margin: 0 auto;
   }
 
   .image-placeholder {
-    width: 250px;
-    height: 250px;
-    font-size: 80px;
-    margin: 20px auto;
+    font-size: 60px;
   }
 
   .section-title {
-    font-size: 2em;
+    font-size: 1.8em;
+    margin-bottom: 15px;
   }
 
   .section-subtitle {
@@ -725,12 +805,54 @@ body {
   }
 
   .section-description {
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .motivation-section {
+    padding: 40px 15px;
+  }
+
+  .motivation-title {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  .motivation-subtitle {
     font-size: 1em;
+    margin-bottom: 20px;
+  }
+
+  .motivation-text {
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .motivation-icons {
+    font-size: 2.5em;
+    margin: 20px 0;
+  }
+
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .footer-text {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    padding: 12px 20px;
+    font-size: 0.9em;
   }
 
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 15px;
     max-width: 100%;
   }
 
@@ -740,37 +862,209 @@ body {
   }
 
   .gallery-title {
-    font-size: 2em;
-    margin-bottom: 30px;
+    font-size: 1.8em;
+    margin-bottom: 25px;
   }
 }
 
 @media (max-width: 480px) {
+  .nav-logo {
+    font-size: 1.2em;
+  }
+
+  .nav-link {
+    font-size: 0.85em;
+  }
+
+  .hero {
+    margin-top: 60px;
+    height: 50vh;
+    min-height: 400px;
+  }
+
   .hero-title {
     font-size: 1.5em;
+    margin-bottom: 10px;
   }
 
   .hero-subtitle {
-    font-size: 1em;
+    font-size: 0.95em;
+    margin-bottom: 15px;
   }
 
-  .nav-menu {
-    gap: 15px;
-  }
-
-  .section-title {
+  .hero-hearts {
     font-size: 1.5em;
   }
 
+  .story-section {
+    padding: 40px 12px;
+  }
+
+  .section-image {
+    width: 100% !important;
+  }
+
+  .image-placeholder,
+  .story-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    border-radius: 15px;
+  }
+
+  .image-placeholder {
+    font-size: 50px;
+  }
+
+  .section-title {
+    font-size: 1.4em;
+    margin-bottom: 12px;
+  }
+
   .section-description {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .section-text {
+    padding: 0 !important;
+  }
+
+  .motivation-section {
+    padding: 30px 12px;
+  }
+
+  .motivation-title {
+    font-size: 1.5em;
+    margin-bottom: 8px;
+  }
+
+  .motivation-subtitle {
     font-size: 0.95em;
+    margin-bottom: 15px;
+  }
+
+  .motivation-text {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .motivation-icons {
+    font-size: 2em;
+    margin: 15px 0;
+  }
+
+  .footer {
+    padding: 25px 12px;
+    text-align: center;
+  }
+
+  .footer-text {
+    font-size: 0.85em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    padding: 10px 16px;
+    font-size: 0.85em;
+    width: 100%;
+    max-width: 280px;
   }
 
   .gallery-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .gallery-item {
     height: 100px;
+  }
+}
+
+/* Очень маленькие экраны (280px - 380px) */
+@media (max-width: 380px) {
+  body {
+    font-size: 14px;
+  }
+
+  .hero {
+    margin-top: 50px;
+    height: 45vh;
+    min-height: 350px;
+  }
+
+  .hero-title {
+    font-size: 1.3em;
+    margin-bottom: 8px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9em;
+  }
+
+  .hero-hearts {
+    font-size: 1.3em;
+    margin-top: 10px;
+  }
+
+  .story-section {
+    padding: 30px 10px;
+  }
+
+  .section-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .section-description {
+    font-size: 0.85em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .motivation-title {
+    font-size: 1.3em;
+  }
+
+  .motivation-subtitle {
+    font-size: 0.9em;
+  }
+
+  .motivation-text {
+    font-size: 0.85em;
+    margin-bottom: 10px;
+  }
+
+  .btn-primary {
+    padding: 8px 12px;
+    font-size: 0.8em;
+  }
+}
+
+/* Разрешение iPhone SE и старых телефонов */
+@media (max-width: 320px) {
+  .hero-title {
+    font-size: 1.2em;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85em;
+  }
+
+  .section-title {
+    font-size: 1.1em;
+  }
+
+  .section-description {
+    font-size: 0.8em;
+  }
+
+  .btn-primary {
+    padding: 8px 10px;
+    font-size: 0.75em;
   }
 }

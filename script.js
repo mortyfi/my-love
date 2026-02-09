@@ -53,8 +53,34 @@ document.querySelectorAll(".nav-link").forEach((link) => {
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
+    // Закрываем меню после клика на мобильных
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+    if (hamburger && navMenu) {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    }
   });
 });
+
+// Гамбургер меню для мобильных
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+
+if (hamburger && navMenu) {
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
+
+  // Закрываем меню при клике вне его
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".navbar")) {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    }
+  });
+}
 
 // Нежные летающие сердечки при клике
 document.addEventListener("click", function (e) {
